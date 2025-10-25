@@ -1,0 +1,45 @@
+Operating system: Microsoft Windows NT 6.2.9200.0
+Opening INI file "C:\Users\User\Desktop\s1disasm-letonics-edition-main\SonPLN.ini"...
+Game type is S1.
+Loading SEGA Logo...
+Plane mappings file "mapeni/Sega Logo.bin" not found.
+Loading palette file "pallet/sega2.bin"...
+Source: 0 Destination: 0 Length: 64
+Loading 8x8 tiles from file "artnem/Sega Logo.nem", using compression Nemesis...
+System.AggregateException: 發生一或多項錯誤。 ---> System.IO.FileNotFoundException: Palette file could not be loaded! Have you set up your disassembly properly?
+   於 SonicRetro.SonLVL.SonPLN.MainForm.LoadLevelPalette() 於 C:\Programs\SonLVL\SonPLN\MainForm.cs: 行 442
+   於 System.Threading.Tasks.Task.InnerInvoke()
+   於 System.Threading.Tasks.Task.Execute()
+   --- 內部例外狀況堆疊追蹤的結尾 ---
+   於 System.Threading.Tasks.Task.FastWaitAll(Task[] tasks)
+   於 System.Threading.Tasks.Parallel.Invoke(ParallelOptions parallelOptions, Action[] actions)
+   於 System.Threading.Tasks.Parallel.Invoke(Action[] actions)
+   於 SonicRetro.SonLVL.SonPLN.MainForm.backgroundLevelLoader_DoWork(Object sender, DoWorkEventArgs e) 於 C:\Programs\SonLVL\SonPLN\MainForm.cs: 行 323
+---> (內部例外狀況 #0) System.IO.FileNotFoundException: Palette file could not be loaded! Have you set up your disassembly properly?
+檔案名稱: 'pallet/sega2.bin'
+   於 SonicRetro.SonLVL.SonPLN.MainForm.LoadLevelPalette() 於 C:\Programs\SonLVL\SonPLN\MainForm.cs: 行 442
+   於 System.Threading.Tasks.Task.InnerInvoke()
+   於 System.Threading.Tasks.Task.Execute()<---
+
+Opening INI file "C:\Users\User\Desktop\s1disasm-letonics-edition-main\SonPLN.ini"...
+Game type is S1.
+Loading SEGA Logo...
+Loading 8x8 tiles from file "artnem/Sega Logo.nem", using compression Nemesis...
+Loading palette file "pallet/Sega2.bin"...
+Source: 0 Destination: 0 Length: 64
+Plane mappings file "mapeni/Sega Logo.bin" not found.
+System.AggregateException: 發生一或多項錯誤。 ---> System.IO.FileNotFoundException: Palette file could not be loaded! Have you set up your disassembly properly?
+   於 SonicRetro.SonLVL.SonPLN.MainForm.LoadLevelPalette() 於 C:\Programs\SonLVL\SonPLN\MainForm.cs: 行 442
+   於 System.Threading.Tasks.Task.InnerInvoke()
+   於 System.Threading.Tasks.Task.Execute()
+   --- 內部例外狀況堆疊追蹤的結尾 ---
+   於 System.Threading.Tasks.Task.FastWaitAll(Task[] tasks)
+   於 System.Threading.Tasks.Parallel.Invoke(ParallelOptions parallelOptions, Action[] actions)
+   於 System.Threading.Tasks.Parallel.Invoke(Action[] actions)
+   於 SonicRetro.SonLVL.SonPLN.MainForm.backgroundLevelLoader_DoWork(Object sender, DoWorkEventArgs e) 於 C:\Programs\SonLVL\SonPLN\MainForm.cs: 行 323
+---> (內部例外狀況 #0) System.IO.FileNotFoundException: Palette file could not be loaded! Have you set up your disassembly properly?
+檔案名稱: 'pallet/Sega2.bin'
+   於 SonicRetro.SonLVL.SonPLN.MainForm.LoadLevelPalette() 於 C:\Programs\SonLVL\SonPLN\MainForm.cs: 行 442
+   於 System.Threading.Tasks.Task.InnerInvoke()
+   於 System.Threading.Tasks.Task.Execute()<---
+

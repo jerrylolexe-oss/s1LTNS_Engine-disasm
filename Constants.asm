@@ -263,12 +263,28 @@ fr_Float6:	equ $55
 fr_Injury:	equ $56
 fr_GetAir:	equ $57
 fr_WaterSlide:	equ $58
-fr_Spindash1:	equ $59
-fr_Spindash2:	equ $5A
-fr_Spindash3:	equ $5B
-fr_Spindash4:	equ $5C
-fr_Spindash5:	equ $5D
-fr_Spindash6:	equ $5E
+fr_Peelout11: equ $59
+fr_Peelout12: equ $5A
+fr_Peelout13: equ $5B
+fr_Peelout14: equ $5C
+fr_Peelout21: equ $5D
+fr_Peelout22: equ $5E
+fr_Peelout23: equ $5F
+fr_Peelout24: equ $60
+fr_Peelout31: equ $61
+fr_Peelout32: equ $62
+fr_Peelout33: equ $63
+fr_Peelout34: equ $64
+fr_Peelout41: equ $65
+fr_Peelout42: equ $66
+fr_Peelout43: equ $67
+fr_Peelout44: equ $68
+fr_Spindash1:	equ $69
+fr_Spindash2:	equ $6A
+fr_Spindash3:	equ $6B
+fr_Spindash4:	equ $6C
+fr_Spindash5:	equ $6D
+fr_Spindash6:	equ $6E
 
 ; Boss locations
 ; The main values are based on where the camera boundaries mainly lie

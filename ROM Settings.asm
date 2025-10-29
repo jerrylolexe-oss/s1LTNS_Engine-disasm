@@ -3,22 +3,26 @@
 ; ===========================================================================
 MSUMode	= 0	; if 1, enable MSU Mode.
 ; ===========================================================================
-; SRAM-Related
+; SHC Related
+; ===========================================================================
+SHCScreen	= 1	; if 1, enable SHC screen.
+; ===========================================================================
+; SRAM Related
 ; ===========================================================================
 EnableSRAM	  = 1	; change to 1 to enable SRAM.
 BackupSRAM	  = 1
 AddressSRAM	  = 0	; 0 = odd+even; 2 = even only; 3 = odd only
 ; ===========================================================================
-; Revision-Related
+; Revisions Related
 ; ===========================================================================
 ; Change to 0 to build the original version of the game, dubbed REV00.
 ; Change to 1 to build the later vesion, dubbed REV01, which includes various bugfixes and enhancements.
 ; Change to 2 to build the version from Sonic Mega Collection, dubbed REVXB, which fixes the infamous "spike bug".
 Revision	  = 2
 ; ===========================================================================
-; Drums-Related
+; Drums Related
 ; ===========================================================================
-KCDrums	  = 0 ; If 1, toggle drums into KC drums.	  = 1 ; If 1, toggle drums into KC drums.
+KCDrums	  = 1 ; If 1, toggle drums into KC drums.
 CleanS3DAC	  = 1 ; If 1, toggle drums into KC drums.
 ; ===========================================================================
 ; Zone Count Related
@@ -52,6 +56,15 @@ EnableLeapAni		  = 1 ; If 1, enable leap animation when jumping at the end of th
 ; Toggle Spindash https://info.sonicretro.org/SCHG_How-to:Add_Spin_Dash_to_Sonic_1/Part_1
 ; ===========================================================================
 SpindashToggle		= 1 ; If 1, enable spin-dash from later games.
+; ===========================================================================
+; Toggle Peelout https://sonicresearch.org/community/index.php?threads/how-to-create-a-simple-peelout-from-scratch.7260/
+; ===========================================================================
+PeeloutToggle		= 1 ; If 1, enable spin-dash from later games.
+PeeloutSpeedToggle		= 1 ; If 1, enable spin-dash from later games.
+	PeeloutSpeed: = $80|PeeloutToggle	; horizontal range in pixels at which Sonic is noticed by the Orbinaut
+	PeeloutMaxSpeed: = $1000|PeeloutToggle	; animation speed of the Orbinaut's "getting angry" animation
+;	PeeloutSpeed: = $100|PeeloutToggle	; horizontal range in pixels at which Sonic is noticed by the Orbinaut
+;	PeeloutMaxSpeed: = $4000|PeeloutToggle	; animation speed of the Orbinaut's "getting angry" animation
 ; ===========================================================================
 ; Toggle Air Roll https://info.sonicretro.org/SCHG_How-to:Add_the_Air_Roll/Flying_Spin_Attack
 ; ===========================================================================

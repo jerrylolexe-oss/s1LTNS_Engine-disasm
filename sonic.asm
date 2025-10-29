@@ -303,18 +303,18 @@ GameProgram:
 		beq.w	GameInit	; if yes, branch
 
 CheckSumCheck:
-		movea.l	#EndOfHeader,a0	; start	checking bytes after the header	($200)
-		movea.l	#RomEndLoc,a1	; stop at end of ROM
-		move.l	(a1),d0
-		moveq	#0,d1
-
-.loop:
-		add.w	(a0)+,d1
-		cmp.l	a0,d0
-		bhs.s	.loop
-		movea.l	#Checksum,a1	; read the checksum
-		cmp.w	(a1),d1		; compare checksum in header to ROM
-		bne.w	CheckSumError	; if they don't match, branch
+;		movea.l	#EndOfHeader,a0	; start	checking bytes after the header	($200)
+;		movea.l	#RomEndLoc,a1	; stop at end of ROM
+;		move.l	(a1),d0
+;		moveq	#0,d1
+;
+;.loop:
+;		add.w	(a0)+,d1
+;		cmp.l	a0,d0
+;		bhs.s	.loop
+;		movea.l	#Checksum,a1	; read the checksum
+;		cmp.w	(a1),d1		; compare checksum in header to ROM
+;		bne.w	CheckSumError	; if they don't match, branch
 
 CheckSumOk:
 		lea	(v_crossresetram).w,a6
@@ -388,18 +388,18 @@ ptr_GM_Credits:	bra.w	GM_Credits	; Credits ($1C)
 ; ===========================================================================
 
 CheckSumError:
-		bsr.w	VDPSetupGame
-		move.l	#$C0000000,(vdp_control_port).l ; set VDP to CRAM write
-		moveq	#$3F,d7
+;		bsr.w	VDPSetupGame
+;		move.l	#$C0000000,(vdp_control_port).l ; set VDP to CRAM write
+;		moveq	#$3F,d7
 
-.fillred:
-		move.b	#mus_GameOver,d0
-		bsr.w	PlaySound_Special ; stop music		
-		move.w	#cWhite,(vdp_data_port).l ; fill palette with red
-		dbf	d7,.fillred	; repeat $3F more times
+;.fillred:
+;		move.b	#mus_GameOver,d0
+;		bsr.w	PlaySound_Special ; stop music		
+;		move.w	#cWhite,(vdp_data_port).l ; fill palette with red
+;		dbf	d7,.fillred	; repeat $3F more times
 
-.endlessloop:
-		bra.s	.endlessloop
+;.endlessloop:
+;		bra.s	.endlessloop
 ; ===========================================================================
 
 Art_Text:	binclude	"artunc/menutext.bin" ; text used in level select and debug mode
@@ -1874,11 +1874,11 @@ GM_Sega:
 		copyTilemap	v_256x256&$FFFFFF,vram_bg+$510,24,8
 		copyTilemap	(v_256x256+24*8*2)&$FFFFFF,vram_fg,40,28
 
-		if Revision<>0
-			tst.b   (v_megadrive).w	; is console Japanese?
-			bmi.s   .loadpal
-			copyTilemap	(v_256x256+$A40)&$FFFFFF,vram_fg+$53A,3,2 ; hide "TM" with a white rectangle
-		endif
+;		if Revision<>0
+;			tst.b   (v_megadrive).w	; is console Japanese?
+;			bmi.s   .loadpal
+;			copyTilemap	(v_256x256+$A40)&$FFFFFF,vram_fg+$53A,3,2 ; hide "TM" with a white rectangle
+;		endif
 
 .loadpal:
 		if SEGAScreenFadeIn
@@ -1938,7 +1938,9 @@ GM_Title:
 		disable_ints
 
 ;		bsr.w	DACDriverLoad
-
+		if SHCScreen
+		jsr		SHC_Screen
+		endif
 		lea	(vdp_control_port).l,a6
 		move.w	#$8004,(a6)	; 8-colour mode
 		move.w	#$8200+(vram_fg>>10),(a6) ; set foreground nametable address
@@ -6936,6 +6938,9 @@ MusicList2:
 ; ---------------------------------------------------------------------------
 
 Sonic_MdNormal:
+		if PeeloutToggle
+        bsr.w   Sonic_Peelout
+		endif
 		if SpindashToggle
 		bsr.w	Sonic_SpinDash
 		endif
@@ -7041,10 +7046,15 @@ locret_13302:
 		rts
 
 		include	"_incObj/Sonic LevelBound.asm"
+		if PeeloutToggle
+        include "_incObj/Sonic Peelout.asm"
+		endif
 		include	"_incObj/Sonic Roll.asm"
 		include	"_incObj/Sonic Jump.asm"
 		include	"_incObj/Sonic JumpHeight.asm"
+		if SpindashToggle
 		include	"_incObj/Sonic SpinDash.asm"	; <-- add this line!
+		endif
 		include	"_incObj/Sonic SlopeResist.asm"
 		include	"_incObj/Sonic RollRepel.asm"
 		include	"_incObj/Sonic SlopeRepel.asm"
@@ -9243,6 +9253,8 @@ ObjPos_Null:	dc.b $FF, $FF, 0, 0, 0,	0
 
 	endif
 Art_Dust:	binclude	"artunc/spindust.bin"
+		even
+SHC_Screen:	binclude	"SHC Screen/SHC Splash.bin"
 		even
 ; --------------------------------------------------------------
 ; Debugging modules

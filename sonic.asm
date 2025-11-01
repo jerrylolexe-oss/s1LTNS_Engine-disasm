@@ -11,8 +11,7 @@
 ; ===========================================================================
 ; WARNING!
 ; =========================================================================== 
-; THERE MIGHT BE SOME ISSUES AND CRASHES (SUCH AS LEVEL SELECT CRASH WHEN ENTERING A LEVEL),
-; SO PLEASE DM ME IN SSRG IF YOU ENCOUNTERED A BUG AND FOUND THE CRRASH ORGINS.
+; PLEASE DM ME IN SSRG IF YOU ENCOUNTERED A BUG AND FOUND THE CRRASH ORGINS.
 ; ===========================================================================
 	cpu 68012
 	include "ROM Settings.asm"
@@ -2226,8 +2225,7 @@ LevSel_Credits:
 
 LevSel_Level_SS:
 		add.w	d0,d0
-		lea 	(LevSel_Ptrs).l,a0
-		jmp 	(a0,d0.w)
+		move.w	LevSel_Ptrs(pc,d0.w),d0 ; load level number
 		bmi.w	LevelSelect
 		cmpi.w	#id_SS*$100,d0	; check	if level is 0700 (Special Stage)
 		bne.s	LevSel_Level	; if not, branch
